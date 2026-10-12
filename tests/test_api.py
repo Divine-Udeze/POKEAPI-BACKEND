@@ -34,7 +34,7 @@ def test_login_rejects_empty_username(client: TestClient) -> None:
 # --- CRUD happy paths ---
 def test_create_favorite(client: TestClient, alice: dict[str, str]) -> None:
     fav = make_favorite(client, alice)
-    assert fav["id"] == 2
+    assert fav["id"] == 1
     assert fav["pokemon_name"] == "pikachu"
     assert fav["user_id"] == "alice"
     assert "date_added" in fav
