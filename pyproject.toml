@@ -1,0 +1,15 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B"]
+ignore = ["B008"]  # FastAPI's Depends() in defaults is intentional
+
+[tool.mypy]
+strict = true
+plugins = ["pydantic.mypy"]

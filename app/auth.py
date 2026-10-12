@@ -6,7 +6,9 @@ from fastapi import Depends, HTTPException
 from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 from pydantic import BaseModel, Field
 
-SECRET_KEY = os.environ.get("JWT_SECRET", "dev-only-change-me")
+SECRET_KEY = os.environ.get(
+    "JWT_SECRET", "dev-only-secret-key-change-in-production-0123456789"
+)
 ALGORITHM = "HS256"
 TOKEN_TTL_MINUTES = 60
 
