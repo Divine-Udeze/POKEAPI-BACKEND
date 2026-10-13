@@ -1,0 +1,8 @@
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      JWT_SECRET: ${JWT_SECRET:-dev-only-secret-key-change-in-production-0123456789}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173}
