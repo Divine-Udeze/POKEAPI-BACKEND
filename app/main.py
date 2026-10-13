@@ -1,7 +1,9 @@
+import os
 from datetime import datetime, timezone
 from itertools import count
 
 from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 
 from app.auth import (
     LoginRequest,
@@ -12,6 +14,18 @@ from app.auth import (
 from app.models import Favorite, FavoriteCreate, FavoriteUpdate
 
 app = FastAPI(title="Favorites API")
+
+
+origins = [
+    o.strip()
+    for o in os.environ.get("CORS_ORIGINS", "http://localhost:5173").split(",")
+]
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_methods=["GET", "POST", "PATCH", "DELETE"],
+    allow_headers=["Authorization", "Content-Type"],
+)
 
 favorites: dict[int, Favorite] = {}
 id_counter = count(1)
